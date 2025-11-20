@@ -10,5 +10,5 @@ public class RegistroDTO {
     @Schema(example = "contraseña", description = "Contraseña del usuario")
     private String password;
     @Schema(example = "correo", description = "correo del usuario")
-    private String correo;
+    private String email;
 }

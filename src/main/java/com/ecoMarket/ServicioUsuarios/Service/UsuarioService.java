@@ -40,10 +40,24 @@ public class UsuarioService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
+        System.out.println("🔍 Login: Buscando usuario con email: [" + email + "]");
+
         Usuario user = usuarioRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+                .orElseThrow(() -> {
+
+                    System.out.println("❌ Login: Usuario NO ENCONTRADO en la BD.");
+                    return new UsernameNotFoundException("Usuario no encontrado");
+                });
+
+
+        System.out.println("✅ Login: Usuario ENCONTRADO. Hash en BD: " + user.getPassword());
+
+
+        System.out.println("ℹ️ Rol del usuario: " + user.getRol());
+
         return new User(
-                user.getName(),
+                user.getEmail(),
                 user.getPassword(),
                 List.of(new SimpleGrantedAuthority(user.getRol().name())));
     }

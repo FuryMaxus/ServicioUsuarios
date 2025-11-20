@@ -21,6 +21,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +41,8 @@ public class AuthController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @PostMapping("/registro")
     @Operation(
@@ -57,7 +60,7 @@ public class AuthController {
         Usuario usuario = new Usuario();
         usuario.setName(registro.getUsername());
         usuario.setPassword(registro.getPassword());
-        usuario.setEmail(registro.getCorreo());
+        usuario.setEmail(registro.getEmail());
         usuario.setRol(Rol.ROL_CLIENTE);
         Usuario user = usuarioService.save(usuario);
         return ResponseEntity.ok(user);

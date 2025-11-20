@@ -127,7 +127,6 @@ public class UsuarioController {
             Usuario usuario = usuarioService.findByEmail(emailAutenticado);
 
             UserProfileDTO dto = new UserProfileDTO();
-            dto.setId(usuario.getId());
             dto.setName(usuario.getName());
             dto.setEmail(usuario.getEmail());
 

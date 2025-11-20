@@ -37,6 +37,7 @@ public class SecurityConfig {
                                 "/favicon.ico"
                         ).permitAll()
                         .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("/api/v1/usuarios/me").authenticated()
                         .requestMatchers("/api/v1/usuarios/admin/{user}").hasAnyAuthority("ROL_ADMIN")
                         .requestMatchers("/api/v1/usuarios/**").hasAnyAuthority("ROL_ADMIN", "ROL_TRABAJADOR")
                         .anyRequest().authenticated()
