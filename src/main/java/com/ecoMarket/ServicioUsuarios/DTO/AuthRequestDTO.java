@@ -10,3 +10,4 @@ public class AuthRequestDTO {
     @Schema(example = "contraseña", description = "Contraseña del usuario")
     private String password;
 }
+

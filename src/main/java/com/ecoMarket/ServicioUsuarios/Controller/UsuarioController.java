@@ -1,5 +1,6 @@
 package com.ecoMarket.ServicioUsuarios.Controller;
 
+import com.ecoMarket.ServicioUsuarios.DTO.UserProfileDTO;
 import com.ecoMarket.ServicioUsuarios.Model.Usuario;
 import com.ecoMarket.ServicioUsuarios.Service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,6 +15,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -111,6 +113,27 @@ public class UsuarioController {
             usuarioService.deleteByUsername(user);
             return ResponseEntity.noContent().build();
         }catch( Exception e ) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/me")
+    @PreAuthorize("isAuthenticated()")
+    @Operation(summary = "Obtener mi perfil", security = @SecurityRequirement(name = "bearer-jwt"))
+    public ResponseEntity<UserProfileDTO> obtenerMiPerfil() {
+        String emailAutenticado = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        try {
+            Usuario usuario = usuarioService.findByEmail(emailAutenticado);
+
+            UserProfileDTO dto = new UserProfileDTO();
+            dto.setId(usuario.getId());
+            dto.setName(usuario.getName());
+            dto.setEmail(usuario.getEmail());
+
+            return ResponseEntity.ok(dto);
+
+        } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
     }
