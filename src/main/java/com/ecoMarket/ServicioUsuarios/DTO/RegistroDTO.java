@@ -11,4 +11,6 @@ public class RegistroDTO {
     private String password;
     @Schema(example = "correo", description = "correo del usuario")
     private String email;
+    @Schema(example = "direccion", description = "direccion del usuario")
+    private String address;
 }

@@ -129,7 +129,7 @@ public class UsuarioController {
             UserProfileDTO dto = new UserProfileDTO();
             dto.setName(usuario.getName());
             dto.setEmail(usuario.getEmail());
-
+            dto.setAddress(usuario.getAddress());
             return ResponseEntity.ok(dto);
 
         } catch (Exception e) {

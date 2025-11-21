@@ -20,5 +20,8 @@ public class Usuario {
     private String password;
     @Column(nullable = false,unique = true)
     private String email;
+    @Column
+    private String address;
     private Rol rol;
+
 }

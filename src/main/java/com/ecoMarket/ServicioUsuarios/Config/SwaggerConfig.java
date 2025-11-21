@@ -16,7 +16,7 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("API clientes de EcoMarket")
+                        .title("API Gestion de Usuarios y Autenticacion de LevelUP Gamer")
                         .version("1.0")
                         .description("Documentacion de la API para el sistema de usuarios"))
                 .components(new Components()

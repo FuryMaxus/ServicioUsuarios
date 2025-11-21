@@ -62,6 +62,9 @@ public class AuthController {
         usuario.setPassword(registro.getPassword());
         usuario.setEmail(registro.getEmail());
         usuario.setRol(Rol.ROL_CLIENTE);
+        if (registro.getAddress() != null && !registro.getAddress().isEmpty()) {
+            usuario.setAddress(registro.getAddress());
+        }
         Usuario user = usuarioService.save(usuario);
         return ResponseEntity.ok(user);
     }
