@@ -14,7 +14,7 @@ public class DataInitializer {
     public CommandLineRunner crearAdminPorDefecto(UsuarioRepository usuarioRepository,
                                                   PasswordEncoder passwordEncoder) {
         return args -> {
-            if (usuarioRepository.findByEmail("admin").isEmpty()) {
+            if (usuarioRepository.findByEmail("admin@levelUpGamer.cl").isEmpty()) {
                 Usuario admin = new Usuario();
                 admin.setName("admin");
                 admin.setPassword(passwordEncoder.encode("admin123"));
