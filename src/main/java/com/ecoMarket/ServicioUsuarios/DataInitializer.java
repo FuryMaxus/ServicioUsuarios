@@ -22,7 +22,7 @@ public class DataInitializer {
                 admin.setRol(Rol.ROL_ADMIN);
 
                 usuarioRepository.save(admin);
-                System.out.println("Usuario admin creado: admin / admin123");
+                System.out.println("Usuario admin creado: admin@levelUpGamer.cl / admin123");
             } else {
                 System.out.println("Admin ya existe, no se creo otro.");
             }
